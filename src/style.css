@@ -1,0 +1,335 @@
+/* -------------------------------------- */
+/* --------------- Global --------------- */
+/* -------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+:root {
+  --main-color: #0075ff;
+  --second-color: #0d69d5;
+  --third-color: #a0cbcf;
+  --hover-active-color: #f6f6f6;
+  --ofwhite-color: #f1f5f9;
+  --orange-color: #f59e0b;
+  --green-color: #22c55e;
+  --red-color: #f44336;
+  --gray-color: #888;
+  --ccc-color: #ccc;
+  --linear-bg: linear-gradient(
+    135deg,
+    hsl(240deg 99% 68%) 13%,
+    hsl(225deg 53% 57%) 50%,
+    hsl(182deg 28% 41%) 87%
+  );
+}
+
+body {
+  background-color: var(--ofwhite-color);
+  font-family: Tahoma, Verdana, sans-serif !important;
+}
+
+i.update {
+  color: var(--main-color);
+  font-size: 17px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+i.delete {
+  color: var(--red-color);
+  font-size: 17px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+i.update:hover,
+i.delete:hover {
+  transform: translateY(-3px);
+}
+
+/* -------------------------------------- */
+/* --------------- Table ---------------- */
+/* -------------------------------------- */
+
+ table {
+  border-collapse: collapse;
+  width: calc(100% - 30px);
+  table-layout: fixed;
+  margin: 15px;
+  background-color: white;
+  border-spacing: 0px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+@media (max-width: 1200px) {
+  table {
+    width: 900px;
+  }
+}
+thead {
+  background: #333333;
+  color: white;
+}
+tr {
+  transition: 0.3s;
+}
+td,
+th {
+  padding: 10px;
+  transition: 0.3s;
+  width: fit-content;
+}
+th:first-child,
+td:first-child {
+  width: 70px;
+}
+th:last-child,
+td:last-child {
+  width: 100px;
+}
+tr:nth-child(even) {
+  background-color: var(--hover-active-color);
+}
+tr:hover {
+  background-color: #0077ff25;
+}
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+
+/* -------------------------------------- */
+/* ------------ Dashboard --------------- */
+/* -------------------------------------- */
+
+/* 1- TopBar */
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 10px;
+  background: var(--ofwhite-color);
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px #c6c6c6;
+  z-index: 999;
+}
+.top-bar > h2.logo {
+  position: relative;
+}
+.top-bar > h2.logo::after,
+.top-bar > h2.logo::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--linear-bg);
+}
+.top-bar > h2.logo::before {
+  bottom: -9px;
+  width: 80px;
+  height: 3px;
+}
+.top-bar > h2.logo::after {
+  bottom: -18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 5px solid white;
+}
+.top-bar a {
+  width: 150px;
+  margin: 5px;
+}
+/* 1- SideBar */
+.side-bar {
+  position: fixed;
+  top: 65px;
+  width: 200px;
+  height: calc(100vh - 65px);
+  background-color: var(--ofwhite-color);
+  padding: 10px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 10px 10px #c6c6c6;
+  z-index: 999;
+}
+.side-bar .link {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 3px;
+  gap: 7px;
+  text-decoration: none;
+  color: #555;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 0px;
+  border: 1px solid transparent;
+  transition: 0.3s;
+  position: relative;
+  font-size: 15px;
+}
+.side-bar .link i {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  margin: 0;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #777;
+}
+.side-bar .link.active i {
+  color: #000;
+}
+.side-bar .link.active {
+  background-color: #0077ff25;
+  color: #000;
+}
+
+.link:hover {
+  background: #fff;
+}
+.collapse {
+  padding: 0 20px;
+}
+@media (max-width: 767px) {
+  .side-bar {
+    width: 60px;
+  }
+  .side-bar .link {
+    justify-content: center;
+    width: 30px;
+  }
+  .collapse {
+    padding: 0;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+  }
+  .side-bar .link span {
+    position: absolute;
+    max-width: 100px;
+    min-width: 75px;
+    text-align: center;
+    z-index: 999;
+    top: 0;
+    left: 30px;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    display: none;
+  }
+  .side-bar .link:hover span {
+    display: block;
+  }
+}
+/* -------------------------------------- */
+/* ------------ Outlet ------------------ */
+/* -------------------------------------- */
+
+.outlet {
+  margin-top: 65px;
+  overflow-x: auto;
+  padding-bottom: 0px;
+  min-height: calc(100vh - 65px);
+  margin-left: 200px;
+  padding: 15px;
+  background-color: var(--ofwhite-color);
+}
+@media (max-width: 767px) {
+  .outlet {
+    margin-left: 65px;
+  }
+}
+
+/* -------------------------------------- */
+/* ------------ Loader ------------------- */
+/* -------------------------------------- */
+
+.loader-container {
+  position: fixed;
+  width: calc(100% - 230px);
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  z-index: 1;
+}
+.loading-text {
+  color: white;
+  margin: 5px 0;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.loader .line {
+  width: 3px;
+  height: 15px;
+  background-color: #22c55e;
+  margin: 0 2px;
+  display: inline-block;
+  animation: opacity-1 1000ms infinite ease-in-out;
+  -webkit-animation: opacity-1 1000ms infinite ease-in-out;
+}
+.loader .line-1 {
+  animation-delay: 800ms;
+}
+.loader .line-2 {
+  animation-delay: 600ms;
+}
+.loader .line-3 {
+  animation-delay: 400ms;
+}
+.loader .line-4 {
+  animation-delay: 200ms;
+}
+.loader .line-6 {
+  animation-delay: 100ms;
+}
+.loader .line-7 {
+  animation-delay: 100ms;
+}
+.loader .line-8 {
+  animation-delay: 200ms;
+}
+.loader .line-9 {
+  animation-delay: 400ms;
+}
+.loader .line-10 {
+  animation-delay: 600ms;
+}
+.loader .line-11 {
+  animation-delay: 800ms;
+}
+@keyframes opacity-1 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
